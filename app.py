@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, session
 import sqlite3
+import os
 from datetime import datetime
 
 app = Flask(__name__)
@@ -100,7 +101,7 @@ def admin_login():
         password = request.form["password"]
 
 
-        if username == "admin" and password == "progress123":
+        if username == os.environ.get("ADMIN_USERNAME") and password == os.environ.get("ADMIN_PASSWORD"):
 
             session["admin"] = True
 
